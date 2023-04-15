@@ -35,7 +35,7 @@ class MovieDetail extends Component {
         } else {
             this.state.review_details.title = this.props.selectedMovie.title;
             console.log('review_details', this.state.review_details)
-            dispatch(postReview(this.state.review_details));
+            //dispatch(postReview(this.state.review_details));
         }
 
     }
