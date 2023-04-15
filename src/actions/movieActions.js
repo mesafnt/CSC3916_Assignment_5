@@ -43,7 +43,7 @@ export function setMovies(movies) {
 }
 
 export function fetchMovie(movie_title) {
-    //const env = runtimeEnv();
+   
     console.log('fetch',movie_title)
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/movies/${movie_title}?reviews=true`, {
@@ -67,7 +67,7 @@ export function fetchMovie(movie_title) {
 }
 
 export function fetchMovies() {
-    //const env = runtimeEnv();
+   
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/movies?reviews=true`, {
             method: 'GET',
@@ -89,7 +89,7 @@ export function fetchMovies() {
 }
 
 export function postReview(review_data) {
-    //const env = runtimeEnv();
+    
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/reviews`, {
             method: 'POST',
@@ -113,7 +113,7 @@ export function postReview(review_data) {
 }
 
 export function searchMovie(search_term) {
-    //const env = runtimeEnv();
+    
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/search/${search_term}`, {
             method: 'GET',
