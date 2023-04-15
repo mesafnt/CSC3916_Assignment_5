@@ -5,7 +5,7 @@ import {Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
 import { Image } from 'react-bootstrap';
 //import {submitLogin} from "../actions/authActions";
-
+import { Form, FormControl, Button } from 'react-bootstrap';
 
 class MovieDetail extends Component {
 
