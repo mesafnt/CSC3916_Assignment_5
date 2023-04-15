@@ -5,7 +5,7 @@ import {Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
 import { Image } from 'react-bootstrap';
 import {submitLogin} from "../actions/authActions";
-//import runtimeEnv from "@mars/render-js-runtime-env";
+
 
 class MovieDetail extends Component {
 
@@ -84,7 +84,7 @@ class MovieDetail extends Component {
                         </p>
                     )}
                 </Card.Body>
-                <Form>
+                {/* <Form>
                     <Form.Group controlId="rating">
                         <Form.Label>Rating</Form.Label>
                         <Form.Control onChange={this.updateDetails} value={this.state.review_details.rating}
@@ -98,7 +98,7 @@ class MovieDetail extends Component {
                     </Form.Group>
 
                     <Button onClick={this.submitReview}>Submit Review</Button>
-                </Form>
+                </Form> */}
             </Card>
         )
     }
