@@ -5,7 +5,7 @@ import {Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
 import { Image } from 'react-bootstrap';
 import {submitLogin} from "../actions/authActions";
-import runtimeEnv from "@mars/render-js-runtime-env";
+//import runtimeEnv from "@mars/render-js-runtime-env";
 
 class MovieDetail extends Component {
 
