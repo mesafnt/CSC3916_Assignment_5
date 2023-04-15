@@ -4,105 +4,112 @@ import {connect} from 'react-redux';
 import {Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
 import { Image } from 'react-bootstrap';
-import {submitLogin} from "../actions/authActions";
+//import {submitLogin} from "../actions/authActions";
 
 
 class MovieDetail extends Component {
 
-    constructor(props) {
+    
+    componentDidMount() {
+        const {dispatch} = this.props;
+        if (this.props.selectedMovie == null) {
+            dispatch(fetchMovie(this.props.movieId));
+        }
+    }
+    
+
+    //need constructor to allow user's reviews
+    constructor(props){
         super(props);
-        this.updateDetails = this.updateDetails.bind(this)
-        this.submitReview = this.submitReview.bind(this)
+        this.modifyDetails = this.modifyDetails.bind(this)
+        this.movieReviews = this.movieReviews.bind(this)
         this.state = {
-            review_details: {
+            review_details:{
                 title: "",
-                rating: 0,
-                review: ""
+                review: "",
+                rating: 0
             }
         }
-
+        //user will give rating and comment
         this.rating = ''
         this.message = ''
     }
 
+    modifyDetails(event){
+        let modifyDetails = Object.assign({}, this.state.review_details)
 
-
-    submitReview(){
-        console.log("in submit review")
-        const {dispatch} = this.props;
-        if (this.state.review_details.review === "" || this.state.review_details.rating === 0) {
-            alert("Empty rating or review");
-        } else {
-            this.state.review_details.title = this.props.selectedMovie.title;
-            console.log('review_details', this.state.review_details)
-            //dispatch(postReview(this.state.review_details));
-        }
-
-    }
-
-    updateDetails(event) {
-
-        // console.log("in update details")
-        let updateDetails = Object.assign({}, this.state.review_details)
-
-        updateDetails[event.target.id] = event.target.value;
+        modifyDetails[event.target.id] = event.target.value;
 
         this.setState({
-            review_details: updateDetails
+            review_details: modifyDetails
         })
-        // console.log('update details', updateDetails)
+    }
+
+    movieReviews(){
+        const {dispatch} = this.props;
+        
+        if(this.state.review_details.review === "" || this.state.review_details.rating === 0) {
+            alert("Empty review");
+        }
+        else{
+            this.setState().review_details.title = this.props.selectedMovie.title;
+            console.log('review_details', this.state.review_details)
+            dispatch(makeReview(this.state.review_details));
+        }
     }
 
     render() {
+        //const DetailInfo = () => {
+            if (!this.props.selectedMovie) {
+                return <div>Loading....</div>
+            }
 
-        // const DetailInfo = () => {
-        if (!this.props.selectedMovie) {
-            return <div>Loading....</div>
-        }
-
-        return (
-            <Card>
-                <Card.Header>Movie Detail</Card.Header>
-                <Card.Body>
-                    <Image className="image" src={this.props.selectedMovie.imageUrl} thumbnail/>
-                </Card.Body>
-                <ListGroup>
-                    <ListGroupItem>{this.props.selectedMovie.title}</ListGroupItem>
-                    <ListGroupItem>
-                        {this.props.selectedMovie.actors.map((actor, i) =>
+            return (
+                <Card>
+                    <Card.Header>Movie Detail</Card.Header>
+                    <Card.Body>
+                        <Image className="image" src={this.props.selectedMovie.imageUrl} thumbnail />
+                    </Card.Body>
+                    <ListGroup>
+                        <ListGroupItem>{this.props.selectedMovie.title}</ListGroupItem>
+                        <ListGroupItem>
+                            {this.props.selectedMovie.Actors.map((actor, i) =>
+                                <p key={i}>
+                                    <b>{actor.ActorName}</b> {actor.CharacterName}
+                                </p>)}
+                        </ListGroupItem>
+                        <ListGroupItem><h4><BsStarFill/> {this.props.selectedMovie.avgRating}</h4></ListGroupItem>
+                    </ListGroup>
+                    <Card.Body>
+                        {this.props.selectedMovie.reviews.map((review, i) =>
                             <p key={i}>
-                                <b>{actor.actor_name}</b> {actor.character_name}
-                            </p>)}
-                    </ListGroupItem>
-                    <ListGroupItem><h4><BsStarFill/> {this.props.selectedMovie.averaged_rating}</h4></ListGroupItem>
-                </ListGroup>
-                <Card.Body>
-                    {this.props.selectedMovie.reviews.map((review, i) =>
-                        <p key={i}>
-                            <b>{review.username}</b>&nbsp; {review.review}
-                            &nbsp;  <BsStarFill/> {review.rating}
-                        </p>
-                    )}
-                </Card.Body>
-                {/* <Form>
-                    <Form.Group controlId="rating">
-                        <Form.Label>Rating</Form.Label>
-                        <Form.Control onChange={this.updateDetails} value={this.state.review_details.rating}
-                                      type="number" min="1" max="5"/>
-                    </Form.Group>
-
-                    <Form.Group controlId="review">
-                        <Form.Label>Review</Form.Label>
-                        <Form.Control onChange={this.updateDetails} value={this.state.review_details.review}
-                                      type="text" placeholder="Write a new review"/>
-                    </Form.Group>
-
-                    <Button onClick={this.submitReview}>Submit Review</Button>
-                </Form> */}
-            </Card>
+                                <b>{review.username}</b>&nbsp; {review.review}
+                                &nbsp;  <BsStarFill /> {review.rating}
+                            </p>
+                        )}
+                    </Card.Body>
+                    <Form>
+                        <Form.Group controlId='rating'>
+                            <Form.Label>Rating</Form.Label>
+                            <FormControl onChange={this.modifyDetails} value={this.state.review_details.rating}
+                            type="number" min="1" max="5"/>
+                        </Form.Group>
+                        <Form.Group controlId='review'>
+                            <Form.Label>Review</Form.Label>
+                            <FormControl onChange={this.modifyDetails} value={this.state.review_details.review}
+                            type="text" placeholder="Write a review"/>
+                        </Form.Group>
+                        <Button onClick={this.movieReviews}>Submit review</Button>
+                    </Form>
+                </Card>
+            )
+        //}
+        /*
+        return (
+            <DetailInfo />
         )
+        */
     }
-
 }
 
 const mapStateToProps = state => {
@@ -111,4 +118,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(MovieDetail); 
+export default connect(mapStateToProps)(MovieDetail);
