@@ -111,4 +111,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(MovieDetail);
+export default connect(mapStateToProps)(MovieDetail); FORM
