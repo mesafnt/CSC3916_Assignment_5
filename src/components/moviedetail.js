@@ -10,6 +10,13 @@ import { Form, FormControl, Button } from 'react-bootstrap';
 
 class MovieDetail extends Component {
 
+     componentDidMount() {
+        const {dispatch} = this.props;
+        if (this.props.selectedMovie == null) {
+            dispatch(fetchMovie(this.props.movieId));
+        }
+    }
+
     constructor(props) {
         super(props);
         this.updateDetails = this.updateDetails.bind(this)
