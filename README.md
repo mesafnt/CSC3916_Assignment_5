@@ -1,6 +1,6 @@
 This project is hosted via render at this [link](https://assignmnet-05.onrender.com). 
 
-This project collaborates with this [API](https://github.com/mesafnt/CSC3916_Assignment4.git).
+This project collaborates with assignment 4 [API](https://github.com/mesafnt/CSC3916_Assignment4.git).
 
 
 
