@@ -25,32 +25,6 @@ class MovieDetail extends Component {
         this.message = ''
     }
 
-    // submitReview () {
-    //     const env = runtimeEnv();
-    //     let review_data = {
-    //         'title': this.props.selectedMovie.title,
-    //         'small_quote': this.state.review_details.small_quote,
-    //         'rating': this.state.review_details.rating
-    //     }
-    //
-    //     return fetch(`${env.REACT_APP_API_URL}/reviews`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json',
-    //             'Authorization': localStorage.getItem('token')
-    //         },
-    //         mode: 'cors',
-    //         body: JSON.stringify(review_data)
-    //     }).then((response) => {
-    //         if (!response.ok) {
-    //             throw Error(response.statusText);
-    //         }
-    //         return response.json()
-    //     }).then((res) => {
-    //         console.log(res.json())
-    //     }).catch((e) => console.log(e));
-    // }
 
     submitReview(){
         console.log("in submit review")
