@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { fetchMovie } from "../actions/movieActions";
+import { postReview } from "../actions/movieActions";
 import {connect} from 'react-redux';
 import {Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
@@ -34,7 +35,7 @@ class MovieDetail extends Component {
         } else {
             this.state.review_details.title = this.props.selectedMovie.title;
             console.log('review_details', this.state.review_details)
-            //dispatch(postReview(this.state.review_details));
+            dispatch(postReview(this.state.review_details));
         }
 
     }
@@ -86,13 +87,13 @@ class MovieDetail extends Component {
                 <Form>
                     <Form.Group controlId="rating">
                         <Form.Label>Rating</Form.Label>
-                        <Form.Control onChange={this.updateDetails} value={this.state.review_details.rating}
+                        <FormControl onChange={this.updateDetails} value={this.state.review_details.rating}
                                       type="number" min="1" max="5"/>
                     </Form.Group>
 
                     <Form.Group controlId="review">
                         <Form.Label>Review</Form.Label>
-                        <Form.Control onChange={this.updateDetails} value={this.state.review_details.review}
+                        <FormControl onChange={this.updateDetails} value={this.state.review_details.review}
                                       type="text" placeholder="Write a new review"/>
                     </Form.Group>
 
