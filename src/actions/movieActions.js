@@ -87,7 +87,7 @@ export function fetchMovies() {
         }).catch((e) => console.log(e));
     }
 }
-
+//
 export function postReview(review_data) {
     
     return dispatch => {
