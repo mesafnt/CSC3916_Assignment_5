@@ -61,10 +61,10 @@ class MovieList extends Component {
     }
 }
 
-// const mapStateToProps = state => {
-//     return {
+const mapStateToProps = state => {
+    return {
         
-//     }
-// }
+    }
+}
 
 export default connect(mapStateToProps)(MovieList);
