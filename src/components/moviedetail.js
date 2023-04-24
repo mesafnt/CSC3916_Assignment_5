@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import { fetchMovie } from "../actions/movieActions";
-import { postReview } from "../actions/movieActions";
+import {fetchMovie, postReview, setMovie} from "../actions/movieActions";
 import {connect} from 'react-redux';
-import {Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import {Card, ControlLabel, Col, Form, FormGroup, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
 import { Image } from 'react-bootstrap';
+import {submitLogin} from "../actions/authActions";
+import runtimeEnv from "@mars/heroku-js-runtime-env";
 //import {submitLogin} from "../actions/authActions";
 import { Form, FormControl, Button } from 'react-bootstrap';
 
 class MovieDetail extends Component {
 
-     componentDidMount() {
-        const {dispatch} = this.props;
-        if (this.props.selectedMovie == null) {
-            dispatch(fetchMovie(this.props.movieId));
-        }
-    }
+    //  componentDidMount() {
+    //     const {dispatch} = this.props;
+    //     if (this.props.selectedMovie == null) {
+    //         dispatch(fetchMovie(this.props.movieId));
+    //     }
+    // }
 
     constructor(props) {
         super(props);
@@ -100,7 +101,7 @@ class MovieDetail extends Component {
 
                     <Form.Group controlId="review">
                         <Form.Label>Review</Form.Label>
-                        <FormControl onChange={this.updateDetails} value={this.state.review_details.review}
+                        <Form.Control onChange={this.updateDetails} value={this.state.review_details.review}
                                       type="text" placeholder="Write a new review"/>
                     </Form.Group>
 
