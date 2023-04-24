@@ -23,9 +23,22 @@ function movieSet(movie) {
     }
 }
 
+function moviesSet(movies) {
+    return {
+        type: actionTypes.SET_MOVIES,
+        selectedMovies: movies
+    }
+}
+
 export function setMovie(movie) {
     return dispatch => {
         dispatch(movieSet(movie));
+    }
+}
+
+export function setMovies(movies) {
+    return dispatch => {
+        dispatch(moviesSet(movies));
     }
 }
 
