@@ -18,7 +18,7 @@ class MovieList extends Component {
         dispatch(fetchMovies());
     }
 
-    handleSelect(selectedIndex, e) {
+    handleSelect(selectedIndex, _e) {
         const {dispatch} = this.props;
         dispatch(setMovie(this.props.movies[selectedIndex]));
     }
@@ -46,7 +46,7 @@ class MovieList extends Component {
                             </div>
                             <Carousel.Caption>
                                 <h3>{movie.title}</h3>
-                                <BsStarFill glyph={'star'} /> {movie.averaged_rating} &nbsp;&nbsp; {movie.year_released}
+                                <BsStarFill glyph={'star'} /> {movie.average_rating} &nbsp;&nbsp; {movie.year_released}
                             </Carousel.Caption>
                         </Carousel.Item>
                     )}

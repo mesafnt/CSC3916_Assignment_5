@@ -1,6 +1,7 @@
 import actionTypes from '../constants/actionTypes';
-//import runtimeEnv from '@mars/heroku-js-runtime-env'
-const env = process.env;
+import runtimeEnv from '@mars/heroku-js-runtime-env'
+
+
 function moviesFetched(movies) {
     return {
         type: actionTypes.FETCH_MOVIES,
@@ -42,7 +43,7 @@ export function setMovies(movies) {
 }
 
 export function fetchMovie(movie_title) {
-   
+    const env = runtimeEnv();
     console.log('fetch',movie_title)
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/movies/${movie_title}?reviews=true`, {
@@ -66,7 +67,7 @@ export function fetchMovie(movie_title) {
 }
 
 export function fetchMovies() {
-   
+    const env = runtimeEnv();
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/movies?reviews=true`, {
             method: 'GET',
@@ -86,9 +87,9 @@ export function fetchMovies() {
         }).catch((e) => console.log(e));
     }
 }
-//
+
 export function postReview(review_data) {
-    
+    const env = runtimeEnv();
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/reviews`, {
             method: 'POST',
@@ -112,7 +113,7 @@ export function postReview(review_data) {
 }
 
 export function searchMovie(search_term) {
-    
+    const env = runtimeEnv();
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/search/${search_term}`, {
             method: 'GET',

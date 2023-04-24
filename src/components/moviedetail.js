@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { fetchMovie } from "../actions/movieActions";
 import { postReview } from "../actions/movieActions";
+//import {fetchMovie, SetMovie } from "../actions/movieActions";
 import {connect} from 'react-redux';
 import {Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
 import { Image } from 'react-bootstrap';
 //import {submitLogin} from "../actions/authActions";
-import { Form, FormControl, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 
 
 
@@ -64,7 +64,7 @@ class MovieDetail extends Component {
 
     render() {
 
-        //const DetailInfo = () => {
+        // const DetailInfo = () => {
         if (!this.props.selectedMovie) {
             return <div>Loading....</div>
         }
@@ -80,10 +80,10 @@ class MovieDetail extends Component {
                     <ListGroupItem>
                         {this.props.selectedMovie.actors.map((actor, i) =>
                             <p key={i}>
-                                <b>{actor.actorName}</b> {actor.characterName}
+                                <b>{actor.actor_name}</b> {actor.character_name}
                             </p>)}
                     </ListGroupItem>
-                    <ListGroupItem><h4><BsStarFill/> {this.props.selectedMovie.averageRating}</h4></ListGroupItem>
+                    <ListGroupItem><h4><BsStarFill/> {this.props.selectedMovie.averaged_rating}</h4></ListGroupItem>
                 </ListGroup>
                 <Card.Body>
                     {this.props.selectedMovie.reviews.map((review, i) =>
@@ -96,7 +96,7 @@ class MovieDetail extends Component {
                 <Form>
                     <Form.Group controlId="rating">
                         <Form.Label>Rating</Form.Label>
-                        <FormControl onChange={this.updateDetails} value={this.state.review_details.rating}
+                        <Form.Control onChange={this.updateDetails} value={this.state.review_details.rating}
                                       type="number" min="1" max="5"/>
                     </Form.Group>
 
@@ -118,6 +118,7 @@ class MovieDetail extends Component {
     //     )
     // }
 }
+
 
 const mapStateToProps = state => {
     return {

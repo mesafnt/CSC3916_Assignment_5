@@ -1,11 +1,11 @@
 import React, { Component} from 'react';
-import { submitRegister } from '../actions/authActions';
-import {fetchMovies, searchMovie, setMovie, setMovies} from "../actions/movieActions";
+//import { submitRegister } from '../actions/authActions';
+import {fetchMovies, setMovie, setMovies} from "../actions/movieActions";
 import { connect } from 'react-redux';
-import {Form, Button, Carousel, Nav, Image} from 'react-bootstrap';
+import {Form, Button, Carousel, Image} from 'react-bootstrap';
 import runtimeEnv from "@mars/heroku-js-runtime-env";
-import { Redirect } from 'react-router-dom'
-import {LinkContainer} from "react-router-bootstrap";
+//import { Redirect } from 'react-router-dom'
+//import {LinkContainer} from "react-router-bootstrap";
 import {BsStarFill} from "react-icons/bs";
 
 class Search extends Component {
@@ -54,7 +54,7 @@ class Search extends Component {
                 throw Error(response.statusText);
             }
             return response.json()
-            console.log(response.json())
+            //console.log(response.json())
         }).then((res) => {
             // dispatch(moviesFetched(res.movie));
             dispatch(setMovies(res.movie));
