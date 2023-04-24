@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {fetchMovie, postReview, setMovie} from "../actions/movieActions";
 import {connect} from 'react-redux';
-import {Card, ControlLabel, Col, Form, FormGroup, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
+import {Card,  Form, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
 import { Image } from 'react-bootstrap';
-import {submitLogin} from "../actions/authActions";
-import runtimeEnv from "@mars/heroku-js-runtime-env";
+//import {submitLogin} from "../actions/authActions";
+//import runtimeEnv from "@mars/heroku-js-runtime-env";
 //import {submitLogin} from "../actions/authActions";
 import { Form, FormControl, Button } from 'react-bootstrap';
 
