@@ -1,6 +1,6 @@
 import actionTypes from '../constants/actionTypes';
-import runtimeEnv from '@mars/heroku-js-runtime-env'
-
+//import runtimeEnv from '@mars/heroku-js-runtime-env'
+const env = process.env;
 
 function moviesFetched(movies) {
     return {
@@ -23,30 +23,15 @@ function movieSet(movie) {
     }
 }
 
-function moviesSet(movies) {
-    return {
-        type: actionTypes.SET_MOVIES,
-        selectedMovies: movies
-    }
-}
-
 export function setMovie(movie) {
     return dispatch => {
         dispatch(movieSet(movie));
     }
 }
 
-export function setMovies(movies) {
+export function fetchMovie(movieId) {
     return dispatch => {
-        dispatch(moviesSet(movies));
-    }
-}
-
-export function fetchMovie(movie_title) {
-    const env = runtimeEnv();
-    console.log('fetch',movie_title)
-    return dispatch => {
-        return fetch(`${env.REACT_APP_API_URL}/movies/${movie_title}?reviews=true`, {
+        return fetch(`${env.REACT_APP_API_URL}/movies/${movieId}?reviews=true`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -60,14 +45,12 @@ export function fetchMovie(movie_title) {
             }
             return response.json()
         }).then((res) => {
-            console.log('res', res)
-            dispatch(movieFetched(res.movie[0]));
+            dispatch(movieFetched(res));
         }).catch((e) => console.log(e));
     }
 }
 
 export function fetchMovies() {
-    const env = runtimeEnv();
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/movies?reviews=true`, {
             method: 'GET',
@@ -83,13 +66,13 @@ export function fetchMovies() {
             }
             return response.json()
         }).then((res) => {
-            dispatch(moviesFetched(res.movie));
+            dispatch(moviesFetched(res));
         }).catch((e) => console.log(e));
     }
 }
 
 export function postReview(review_data) {
-    const env = runtimeEnv();
+    
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/reviews`, {
             method: 'POST',
@@ -106,14 +89,14 @@ export function postReview(review_data) {
             }
             return response.json()
         }).then((res) => {
-            // console.log(res.json())
+            console.log(res.json())
             window.location.reload();
         }).catch((e) => console.log(e));
     }
 }
 
 export function searchMovie(search_term) {
-    const env = runtimeEnv();
+   
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/search/${search_term}`, {
             method: 'GET',

@@ -1,5 +1,8 @@
+
+
 import actionTypes from '../constants/actionTypes';
-import runtimeEnv from '@mars/heroku-js-runtime-env'
+//import runtimeEnv from '@mars/heroku-js-runtime-env'
+const env = process.env;
 
 function userLoggedIn(username) {
     return {
@@ -15,7 +18,6 @@ function logout() {
 }
 
 export function submitLogin(data) {
-    const env = runtimeEnv();
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/signin`, {
             method: 'POST',
@@ -40,7 +42,6 @@ export function submitLogin(data) {
 }
 
 export function submitRegister(data) {
-    const env = runtimeEnv();
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/signup`, {
             method: 'POST',
