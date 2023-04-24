@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 //import { submitRegister } from '../actions/authActions';
-import {fetchMovies, setMovie, setMovies} from "../actions/movieActions";
+import {fetchMovies, setMovie, setMovie} from "../actions/movieActions";
 import { connect } from 'react-redux';
 import {Form, Button, Carousel, Image} from 'react-bootstrap';
 import runtimeEnv from "@mars/heroku-js-runtime-env";
