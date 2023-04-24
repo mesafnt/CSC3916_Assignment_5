@@ -110,7 +110,7 @@ export function postReview(review_data) {
 
 export function searchMovie(search_term) {
    
-    return _dispatch => {
+    return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/search/${search_term}`, {
             method: 'GET',
             headers: {
