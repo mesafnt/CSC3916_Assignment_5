@@ -1,23 +1,14 @@
 import React, { Component } from 'react';
-import { postReview } from "../actions/movieActions";
-//import {fetchMovie, SetMovie } from "../actions/movieActions";
+import {fetchMovie, postReview, setMovie} from "../actions/movieActions";
 import {connect} from 'react-redux';
-import {Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import {Card, ControlLabel, Col, Form, FormGroup, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
 import { Image } from 'react-bootstrap';
-//import {submitLogin} from "../actions/authActions";
-import { Form, Button } from 'react-bootstrap';
-
+import {submitLogin} from "../actions/authActions";
+import runtimeEnv from "@mars/heroku-js-runtime-env";
 
 
 class MovieDetail extends Component {
-
-    //  componentDidMount() {
-    //     const {dispatch} = this.props;
-    //     if (this.props.selectedMovie == null) {
-    //         dispatch(fetchMovie(this.props.movieId));
-    //     }
-    // }
 
     constructor(props) {
         super(props);
@@ -27,7 +18,7 @@ class MovieDetail extends Component {
             review_details: {
                 title: "",
                 rating: 0,
-                review: ""
+                small_quote: ""
             }
         }
 
@@ -35,11 +26,37 @@ class MovieDetail extends Component {
         this.message = ''
     }
 
+    // submitReview () {
+    //     const env = runtimeEnv();
+    //     let review_data = {
+    //         'title': this.props.selectedMovie.title,
+    //         'small_quote': this.state.review_details.small_quote,
+    //         'rating': this.state.review_details.rating
+    //     }
+    //
+    //     return fetch(`${env.REACT_APP_API_URL}/reviews`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json',
+    //             'Authorization': localStorage.getItem('token')
+    //         },
+    //         mode: 'cors',
+    //         body: JSON.stringify(review_data)
+    //     }).then((response) => {
+    //         if (!response.ok) {
+    //             throw Error(response.statusText);
+    //         }
+    //         return response.json()
+    //     }).then((res) => {
+    //         console.log(res.json())
+    //     }).catch((e) => console.log(e));
+    // }
 
     submitReview(){
         console.log("in submit review")
         const {dispatch} = this.props;
-        if (this.state.review_details.review === "" || this.state.review_details.rating === 0) {
+        if (this.state.review_details.small_quote === "" || this.state.review_details.rating === 0) {
             alert("Empty rating or review");
         } else {
             this.state.review_details.title = this.props.selectedMovie.title;
@@ -88,7 +105,7 @@ class MovieDetail extends Component {
                 <Card.Body>
                     {this.props.selectedMovie.reviews.map((review, i) =>
                         <p key={i}>
-                            <b>{review.username}</b>&nbsp; {review.review}
+                            <b>{review.username}</b>&nbsp; {review.small_quote}
                             &nbsp;  <BsStarFill/> {review.rating}
                         </p>
                     )}
@@ -100,9 +117,9 @@ class MovieDetail extends Component {
                                       type="number" min="1" max="5"/>
                     </Form.Group>
 
-                    <Form.Group controlId="review">
+                    <Form.Group controlId="small_quote">
                         <Form.Label>Review</Form.Label>
-                        <Form.Control onChange={this.updateDetails} value={this.state.review_details.review}
+                        <Form.Control onChange={this.updateDetails} value={this.state.review_details.small_quote}
                                       type="text" placeholder="Write a new review"/>
                     </Form.Group>
 
@@ -118,7 +135,6 @@ class MovieDetail extends Component {
     //     )
     // }
 }
-
 
 const mapStateToProps = state => {
     return {
