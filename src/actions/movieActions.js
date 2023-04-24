@@ -42,195 +42,99 @@ export function setMovies(movies) {
     }
 }
 
-// export function fetchMovie(movieId) {
-//     return dispatch => {
-//         return fetch(`${env.REACT_APP_API_URL}/movies/${movieId}?reviews=true`, {
-//             method: 'GET',
-//             headers: {
-//                 'Accept': 'application/json',
-//                 'Content-Type': 'application/json',
-//                 'Authorization': localStorage.getItem('token')
-//             },
-//             mode: 'cors'
-//         }).then((response) => {
-//             if (!response.ok) {
-//                 throw Error(response.statusText);
-//             }
-//             return response.json()
-//         }).then((res) => {
-//             dispatch(movieFetched(res));
-//         }).catch((e) => console.log(e));
-//     }
-// }
-
-// export function fetchMovies() {
-//     return dispatch => {
-//         return fetch(`${env.REACT_APP_API_URL}/movies?reviews=true`, {
-//             method: 'GET',
-//             headers: {
-//                 'Accept': 'application/json',
-//                 'Content-Type': 'application/json',
-//                 'Authorization': localStorage.getItem('token')
-//             },
-//             mode: 'cors'
-//         }).then((response) => {
-//             if (!response.ok) {
-//                 throw Error(response.statusText);
-//             }
-//             return response.json()
-//         }).then((res) => {
-//             dispatch(moviesFetched(res));
-//         }).catch((e) => console.log(e));
-//     }
-// }
-
-// export function postReview(review_data) {
-    
-//     return dispatch => {
-//         return fetch(`${env.REACT_APP_API_URL}/reviews`, {
-//             method: 'POST',
-//             headers: {
-//                 'Accept': 'application/json',
-//                 'Content-Type': 'application/json',
-//                 'Authorization': localStorage.getItem('token')
-//             },
-//             mode: 'cors',
-//             body: JSON.stringify(review_data)
-//         }).then((response) => {
-//             if (!response.ok) {
-//                 throw Error(response.statusText);
-//             }
-//             return response.json()
-//         }).then((res) => {
-//             console.log(res.json())
-//             window.location.reload();
-//         }).catch((e) => console.log(e));
-//     }
-// }
-
-// export function searchMovie(search_term) {
-   
-//     return _dispatch => {
-//         return fetch(`${env.REACT_APP_API_URL}/search/${search_term}`, {
-//             method: 'GET',
-//             headers: {
-//                 'Accept': 'application/json',
-//                 'Content-Type': 'application/json',
-//                 'Authorization': localStorage.getItem('token')
-//             },
-//             mode: 'cors'
-//         }).then((response) => {
-//             if (!response.ok) {
-//                 throw Error(response.statusText);
-//             }
-//             return response.json()
-//         }).then((res) => {
-//             // dispatch(moviesFetched(res.movie));
-//             console.log(res.movie);
-//         }).catch((e) => console.log(e));
-//     }
-// }
-
-
-
-
-
-
-
-
 export function fetchMovie(movieId) {
-    return async dispatch => {
-        try {
-            const response = await fetch(`${env.REACT_APP_API_URL}/movies/${movieId}?reviews=true`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem('token')
-                },
-                mode: 'cors'
-            });
+    return dispatch => {
+        return fetch(`${env.REACT_APP_API_URL}/movies/${movieId}?reviews=true`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token')
+            },
+            mode: 'cors'
+        }).then((response) => {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
-            const res = await response.json();
+            return response.json()
+        }).then((res) => {
             dispatch(movieFetched(res));
-        } catch (e) {
-            return console.log(e);
-        }
+        }).catch((e) => console.log(e));
     }
 }
 
 export function fetchMovies() {
-    return async dispatch => {
-        try {
-            const response = await fetch(`${env.REACT_APP_API_URL}/movies?reviews=true`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem('token')
-                },
-                mode: 'cors'
-            });
+    return dispatch => {
+        return fetch(`${env.REACT_APP_API_URL}/movies?reviews=true`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token')
+            },
+            mode: 'cors'
+        }).then((response) => {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
-            const res = await response.json();
+            return response.json()
+        }).then((res) => {
             dispatch(moviesFetched(res));
-        } catch (e) {
-            return console.log(e);
-        }
+        }).catch((e) => console.log(e));
     }
 }
 
 export function postReview(review_data) {
     
-    return async _dispatch => {
-        try {
-            const response = await fetch(`${env.REACT_APP_API_URL}/reviews`, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem('token')
-                },
-                mode: 'cors',
-                body: JSON.stringify(review_data)
-            });
+    return dispatch => {
+        return fetch(`${env.REACT_APP_API_URL}/reviews`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token')
+            },
+            mode: 'cors',
+            body: JSON.stringify(review_data)
+        }).then((response) => {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
-            const res = await response.json();
-            console.log(res.json());
+            return response.json()
+        }).then((res) => {
+            console.log(res.json())
             window.location.reload();
-        } catch (e) {
-            return console.log(e);
-        }
+        }).catch((e) => console.log(e));
     }
 }
 
 export function searchMovie(search_term) {
    
-    return async _dispatch => {
-        try {
-            const response = await fetch(`${env.REACT_APP_API_URL}/search/${search_term}`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': localStorage.getItem('token')
-                },
-                mode: 'cors'
-            });
+    return _dispatch => {
+        return fetch(`${env.REACT_APP_API_URL}/search/${search_term}`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token')
+            },
+            mode: 'cors'
+        }).then((response) => {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
-            const res = await response.json();
+            return response.json()
+        }).then((res) => {
             // dispatch(moviesFetched(res.movie));
             console.log(res.movie);
-        } catch (e) {
-            return console.log(e);
-        }
+        }).catch((e) => console.log(e));
     }
 }
+
+
+
+
+
+
+
+
