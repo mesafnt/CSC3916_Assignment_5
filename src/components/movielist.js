@@ -63,7 +63,7 @@ class MovieList extends Component {
 
 const mapStateToProps = state => {
     return {
-        movies: state.movie.movies
+        
     }
 }
 
