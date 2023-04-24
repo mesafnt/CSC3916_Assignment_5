@@ -3,11 +3,11 @@ import React, { Component} from 'react';
 import {fetchMovies, setMovie, setMovies} from "../actions/movieActions";
 import { connect } from 'react-redux';
 import {Form, Button, Carousel, Image} from 'react-bootstrap';
-import runtimeEnv from "@mars/heroku-js-runtime-env";
+//import runtimeEnv from "@mars/heroku-js-runtime-env";
 //import { Redirect } from 'react-router-dom'
 //import {LinkContainer} from "react-router-bootstrap";
 import {BsStarFill} from "react-icons/bs";
-
+const env = process.env;
 class Search extends Component {
 
     constructor(props){
@@ -39,7 +39,7 @@ class Search extends Component {
     search() {
         const {dispatch} = this.props;
 
-        const env = runtimeEnv();
+       
         // return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/search/${this.state.search_details.search_term}`, {
             method: 'GET',
