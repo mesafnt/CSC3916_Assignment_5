@@ -102,6 +102,7 @@ export function postReview(review_data) {
             }
             return response.json()
         }).then((res) => {
+            dispatch(moviesFetched(res.movie));
             console.log(res.json())
             window.location.reload();
         }).catch((e) => console.log(e));
