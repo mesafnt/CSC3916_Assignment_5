@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
-import {fetchMovie, postReview, setMovie} from "../actions/movieActions";
+import {fetchMovie, postReview} from "../actions/movieActions";
 import {connect} from 'react-redux';
-import {Card, ControlLabel, Col, Form, FormGroup, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
+import {Card, Form, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
 import { Image } from 'react-bootstrap';
-import {submitLogin} from "../actions/authActions";
-import runtimeEnv from "@mars/heroku-js-runtime-env";
+//import {submitLogin} from "../actions/authActions";
+//import runtimeEnv from "@mars/heroku-js-runtime-env";
 
 
 class MovieDetail extends Component {
+
+    componentDidMount() {
+        const {dispatch} = this.props;
+        if (this.props.selectedMovie == null) {
+            dispatch(fetchMovie(this.props.movieId));
+        }
+    }
 
     constructor(props) {
         super(props);
@@ -26,32 +33,7 @@ class MovieDetail extends Component {
         this.message = ''
     }
 
-    // submitReview () {
-    //     const env = runtimeEnv();
-    //     let review_data = {
-    //         'title': this.props.selectedMovie.title,
-    //         'small_quote': this.state.review_details.small_quote,
-    //         'rating': this.state.review_details.rating
-    //     }
-    //
-    //     return fetch(`${env.REACT_APP_API_URL}/reviews`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json',
-    //             'Authorization': localStorage.getItem('token')
-    //         },
-    //         mode: 'cors',
-    //         body: JSON.stringify(review_data)
-    //     }).then((response) => {
-    //         if (!response.ok) {
-    //             throw Error(response.statusText);
-    //         }
-    //         return response.json()
-    //     }).then((res) => {
-    //         console.log(res.json())
-    //     }).catch((e) => console.log(e));
-    // }
+
 
     submitReview(){
         console.log("in submit review")
@@ -78,10 +60,8 @@ class MovieDetail extends Component {
         })
         // console.log('update details', updateDetails)
     }
-
-    render() {
-
-        // const DetailInfo = () => {
+render() {
+    const DetailInfo = () => {
         if (!this.props.selectedMovie) {
             return <div>Loading....</div>
         }
@@ -128,14 +108,12 @@ class MovieDetail extends Component {
             </Card>
         )
     }
-    //     }
-    //
-    //     return (
-    //         <DetailInfo />
-    //     )
-    // }
-}
 
+    return (
+        <DetailInfo />
+    )
+}
+}
 const mapStateToProps = state => {
     return {
         selectedMovie: state.movie.selectedMovie
