@@ -57,7 +57,7 @@ class Search extends Component {
             //console.log(response.json())
         }).then((res) => {
             // dispatch(moviesFetched(res.movie));
-            dispatch(setMovies(res.movie));
+            dispatch(setMovie(res.movie));
             console.log(res.movie);
             // this.setRedirect();
             this.state.search_details.movies = res.movie
