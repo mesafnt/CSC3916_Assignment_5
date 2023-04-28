@@ -125,11 +125,11 @@ class Search extends Component {
                             {this.state.search_details.movies.map((mov) =>
                                 <Carousel.Item key={mov.title}>
                                     <div>
-                                        <Image className="image" src={mov.imageUrl} thumbnail />
+                                        <Image className="image" src={mov.ImageUrl} thumbnail />
                                     </div>
                                     <Carousel.Caption>
                                         <h3>{mov.title}</h3>
-                                        <BsStarFill glyph={'star'} /> {mov.averaged_rating} &nbsp;&nbsp; {mov.year_released}
+                                        <BsStarFill glyph={'star'} /> {mov.averageRating} &nbsp;&nbsp; {mov.year_released}
                                     </Carousel.Caption>
                                 </Carousel.Item>
                             )}
