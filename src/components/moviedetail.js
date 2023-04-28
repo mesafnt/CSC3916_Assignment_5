@@ -164,8 +164,8 @@ class MovieDetail extends Component {
         //const env = runtimeEnv();
 
         var json = {
-            Review: this.state.details.review,
-            Rating: this.state.details.rating,
+            review: this.state.details.review,
+            rating: this.state.details.rating,
             Movie_ID: this.props.movieId
         };
 
@@ -203,9 +203,9 @@ class MovieDetail extends Component {
                         <Image className="image" src={this.props.selectedMovie.ImageUrl} thumbnail />
                     </Card.Body>
                     <ListGroup>
-                        <ListGroupItem>{this.props.selectedMovie.Title}</ListGroupItem>
+                        <ListGroupItem>{this.props.selectedMovie.title}</ListGroupItem>
                         <ListGroupItem>
-                            {this.props.selectedMovie.Actors.map((actor, i) =>
+                            {this.props.selectedMovie.actors.map((actor, i) =>
                                 <p key={i}>
                                     <b>{actor.actor_name}</b> {actor.character_name}
                                 </p>)}
@@ -216,7 +216,7 @@ class MovieDetail extends Component {
                         {this.props.selectedMovie.reviews.map((review, i) =>
                             <p key={i}>
                                 <b>{review.username}</b>&nbsp; {review.review}
-                                &nbsp;  <BsStarFill /> {review.Rating}
+                                &nbsp;  <BsStarFill /> {review.rating}
                             </p>
                         )}
                     </Card.Body>
@@ -239,7 +239,7 @@ class MovieDetail extends Component {
 
                     <FormGroup controlId="rating">
                         <Col componentClass={FormLabel} sm={2}>
-                            Rating
+                            rating
                         </Col>
                         <Col sm={10}>
                             <FormControl onChange={this.updateDetails}
